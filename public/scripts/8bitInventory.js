@@ -39,16 +39,30 @@ $( document ).ready( function(){
     } // end for
     console.log( 'matches:', matches );
     ////// TODO: display matches - in progress
-    $('.outputDiv').append("here's some matches!" + matches);
   }; // end findObject
 
   var getObjects = function(){
     console.log( 'in getObjects');
     // populate the items array
-    ////// TODO: replace the stuff in this function with getting items from the database ////////
-    ////// hint: make a get call to the getInventory and use it's response data to fill the items array ////////
+    ////// TODO: replace the stuff in this function with getting items from the database - in progress
+    ////// hint: make a get call to the getInventory and use it's response data to fill the items array
+      $.ajax({
+        url: '/getInventory',
+        type: 'GET',
+        success: function (data){
+          console.log('got some items', data);
+          displayItems(data);
+      }
+    });
   }; // end getObjects
-
+  function displayItems(array) {
+    var htmlString = '<table><thead><td>color</td><td>name</td><td>size</td></thead>';
+    for (var i = 0; i < array.length; i++) {
+      htmlString += '<tr><td>' + array[i].color + '</td><td>' + array[i].name + '</td><td>' + array[i].size + '</td></tr>';
+    }
+    htmlString += '</table>';
+    $('.outputDiv').html(htmlString);
+  }
   // get objects when doc is ready
   getObjects();
   // the below are tests to show what is returned when running findObject
