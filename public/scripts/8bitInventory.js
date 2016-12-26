@@ -15,11 +15,18 @@ $( document ).ready( function(){
       size: sizeIn
     }; // end testObject
     console.log( 'adding:', newItem );
-    ////// TODO: add ajax call to addItem route to add this item to the table
+      ////// TODO: add ajax call to addItem route to add this item to the table - DONE
+    $.ajax({
+    url: '/addItem',
+    type: 'POST',
+    data: newItem,
+    success: function( data ){
+      console.log( 'got some items: ', data );
+    } // end success
+  }); //end ajax
     // add to items array
     items.push( newItem );
   }; // end addObject
-
   var findObject = function( colorCheck, sizeCheck ){
     console.log( 'in findObject. Looking for:', colorCheck, sizeCheck );
     // array of matches
@@ -31,7 +38,8 @@ $( document ).ready( function(){
       } // end if
     } // end for
     console.log( 'matches:', matches );
-    ////// TODO: display matches
+    ////// TODO: display matches - in progress
+    $('.outputDiv').append("here's some matches!" + matches);
   }; // end findObject
 
   var getObjects = function(){

@@ -4,6 +4,8 @@ var path = require( 'path' );
 var bodyParser = require( 'body-parser' );
 var urlEncodedParser = bodyParser.urlencoded( { extended: false } );
 var port = process.env.PORT || 3003;
+var pg = require ('pg');
+var connectionString = 'postgres://localhost:5432/*';
 
 // spin up server
 app.listen( port, function(){
@@ -19,7 +21,8 @@ app.get( '/', function( req, res ){
 // add new objects to the inventory
 app.post( '/addItem', urlEncodedParser, function( req, res ){
   console.log( 'addItem route hit:', req.body );
-  // add the item from req.body to the table
+  // add the item from req.body to the table - in progress
+  res.send()
 }); // end addItem route
 
 // get all objects in the inventory

@@ -1,0 +1,4 @@
+CREATE TABLE items (
+sizes VARCHAR (30) UNIQUE,
+colors VARCHAR (50) UNIQUE
+);
